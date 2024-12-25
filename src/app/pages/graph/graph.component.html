@@ -1,1 +1,6 @@
-<app-line-chart></app-line-chart>
+<div class="graph-container">
+  <h2>Загрузите CSV для построения графика</h2>
+  <app-csv-upload (dataLoaded)="onDataLoaded($event)"></app-csv-upload>
+
+  <app-line-chart [data]="chartData"></app-line-chart>
+</div>
