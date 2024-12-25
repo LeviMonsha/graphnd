@@ -6,12 +6,12 @@ import { CommonModule } from "@angular/common";
 PlotlyModule.plotlyjs = PlotlyJS;
 
 @Component({
-  selector: "app-line-chart",
+  selector: "app-scatter-plot",
   standalone: true,
   imports: [CommonModule, PlotlyModule],
   template: `
     <div *ngIf="graph" class="p-6 bg-gray-900 rounded-lg shadow-lg">
-      <h2 class="text-2xl font-semibold text-white mb-4">Line Chart</h2>
+      <h2 class="text-2xl font-semibold text-white mb-4">Scatter Plot</h2>
       <plotly-plot
         [data]="graph.data"
         [layout]="graph.layout"
@@ -20,7 +20,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     </div>
   `,
 })
-export class LineChartComponent {
+export class ScatterPlotComponent {
   @Input() set data(data: any[]) {
     if (data && data.length > 0) {
       this.prepareGraphData(data);
@@ -38,13 +38,13 @@ export class LineChartComponent {
         {
           x: xValues,
           y: yValues,
+          mode: "markers",
           type: "scatter",
-          mode: "lines+points",
-          marker: { color: "rgb(153, 0, 255)" },
+          marker: { color: "rgb(153, 0, 255)", size: 10 },
         },
       ],
       layout: {
-        title: "Line Chart",
+        title: "Пример Scatter Plot",
         xaxis: {
           title: "X-axis",
           color: "rgb(255, 255, 255)",

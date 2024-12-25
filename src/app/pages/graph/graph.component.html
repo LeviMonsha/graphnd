@@ -1,6 +1,44 @@
-<div class="graph-container">
-  <h2>Загрузите CSV для построения графика</h2>
-  <app-csv-upload (dataLoaded)="onDataLoaded($event)"></app-csv-upload>
+<div class="relative bg-gray-800 p-6 shadow-lg w-full h-screen">
+  <div
+    class="graph-container max-w-4xl mx-auto p-6 bg-gray-900 rounded-lg shadow-md"
+  >
+    <h2 class="text-2xl font-semibold mb-4 text-center text-white">
+      Загрузите CSV для построения графика
+    </h2>
 
-  <app-line-chart [data]="chartData"></app-line-chart>
+    <div class="mb-6">
+      <app-csv-upload (dataLoaded)="onDataLoaded($event)"></app-csv-upload>
+    </div>
+
+    <div class="flex justify-around mb-4">
+      <button
+        (click)="selectChart('scatter')"
+        [ngClass]="{
+          'border-purple-300': selectedChartType === 'scatter',
+          'border-transparent': selectedChartType !== 'scatter'
+        }"
+        class="text-white hover:border-purple-300 inline-flex items-center px-1 pt-1 border-b-2 text-xl font-medium"
+      >
+        <img src="/public/img/scatter-icon.gif" alt="Scatter Plot" />
+      </button>
+      <button
+        (click)="selectChart('line')"
+        [ngClass]="{
+          'border-purple-300': selectedChartType === 'line',
+          'border-transparent': selectedChartType !== 'line'
+        }"
+        class="text-white hover:border-purple-300 inline-flex items-center px-1 pt-1 border-b-2 text-xl font-medium"
+      >
+        <img src="/public/img/line-icon.gif" alt="Line Chart" />
+      </button>
+    </div>
+
+    <ng-container *ngIf="selectedChartType === 'scatter'">
+      <app-scatter-plot [data]="chartData"></app-scatter-plot>
+    </ng-container>
+
+    <ng-container *ngIf="selectedChartType === 'line'">
+      <app-line-chart [data]="chartData"></app-line-chart>
+    </ng-container>
+  </div>
 </div>

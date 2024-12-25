@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import * as Papa from 'papaparse';
+import { Component, EventEmitter, Output } from "@angular/core";
+import * as Papa from "papaparse";
 
 @Component({
-  selector: 'app-csv-upload',
+  selector: "app-csv-upload",
   template: `
-    <input type="file" (change)="onFileChange($event)" accept=".csv" />
+    <div class="mb-4">
+      <input
+        type="file"
+        (change)="onFileChange($event)"
+        accept=".csv"
+        class="block w-full text-white border border-gray-700 rounded-md bg-gray-800 p-2"
+      />
+    </div>
   `,
 })
 export class CsvUploadComponent {
